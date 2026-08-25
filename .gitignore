@@ -1,0 +1,9 @@
+# Bỏ qua các file thực thi
+*.exe
+
+# Bỏ qua các file cấu hình và bộ nhớ đệm của Python
+__pycache__/
+*.pyc
+
+# Bỏ qua file dữ liệu lịch sử stress test quá nặng
+*stats_history.csv

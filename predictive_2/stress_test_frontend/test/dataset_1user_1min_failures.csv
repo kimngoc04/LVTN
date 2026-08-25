@@ -1,0 +1,2 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+POST,/cart/checkout,LocustBadStatusCode(code=500),68,2026-07-07T10:43:17Z,2026-07-07T12:34:29Z

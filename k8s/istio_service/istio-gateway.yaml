@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: frontend-gateway
+  namespace: default
+spec:
+  selector:
+    istio: ingressgateway # Selector mặc định của Istio sau khi cài profile default
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
