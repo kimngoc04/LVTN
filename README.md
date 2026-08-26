@@ -1,8 +1,8 @@
 # LUẬN VĂN TỐT NGHIỆP: DỰ ĐOÁN VÀ CHỦ ĐỘNG CO GIÃN TÀI NGUYÊN TRONG ỨNG DỤNG MICROSERVICES
 
-**Sinh viên thực hiện:** Nguyễn Thị Kim Ngọc
-**Chuyên ngành:** Mạng máy tính và Truyền thông dữ liệu - Đại học Cần Thơ
-**Giảng viên hướng dẫn:** TS. Nguyễn Hữu Vân Long
+**Sinh viên thực hiện:** Nguyễn Thị Kim Ngọc<br>
+**Chuyên ngành:** Mạng máy tính và Truyền thông dữ liệu - Đại học Cần Thơ<br>
+**Giảng viên hướng dẫn:** TS. Nguyễn Hữu Vân Long<br>
 
 ---
 
