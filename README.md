@@ -22,6 +22,11 @@ Hệ thống được thiết kế theo một quy trình khép kín, tự độn
 
 *   **Bước 1 - Mô hình hóa thời gian phản hồi:** Tiến hành kiểm thử chịu tải (Stress Test) bằng công cụ Locust trên dịch vụ Frontend của ứng dụng Online Boutique. Dữ liệu giám sát được thu thập qua Istio, Prometheus và Grafana để xây dựng hàm số mũ xấp xỉ thời gian phản hồi của hệ thống.
 *   **Bước 2 - Mô phỏng dựa trên truy vết (Trace-driven Simulation):** Sử dụng mô hình toán học vừa thiết lập để chạy mô phỏng cơ chế co giãn, nhằm tự động tạo ra tập dấu vết hiệu năng (performance traces) quy mô lớn làm dữ liệu huấn luyện mà không cần thử nghiệm tốn kém trên hạ tầng vật lý.
-*   **Bước 3 - Dự báo khối lượng công việc:** Sử dụng kỹ thuật đặc trưng trễ (Lag Features) kết hợp với các thuật toán Hồi quy (như Linear Regression với $k=30$, Elastic Net với $k=10$) để phân tích dữ liệu quá khứ và dự báo chính xác lưu lượng truy cập tương lai.
-*   **Bước 4 - Cấp phát tài nguyên chủ động:** Đưa lưu lượng dự báo vào mô hình Cây quyết định hồi quy (Decision Tree Regressor - DTR) để tính toán trước số lượng bản sao (Replica/VM) cần thiết, đảm bảo thời gian phản hồi luôn nằm dưới ngưỡng SLO an toàn.
+*   **Bước 3 - Dự báo khối lượng công việc:** Sử dụng kỹ thuật đặc trưng trễ (Lag Features) kết hợp với các mô hình học máy hồi quy để phân tích dữ liệu quá khứ và dự báo chính xác lưu lượng truy cập tương lai.
+*   **Bước 4 - Cấp phát tài nguyên chủ động:** Đưa lưu lượng dự báo vào mô hình học máy hồi quy để tính toán trước số lượng bản sao (Replica/VM) cần thiết, đảm bảo thời gian phản hồi luôn nằm dưới ngưỡng SLO an toàn.
 *   **Bước 5 - Đánh giá hiệu năng:** So sánh trực tiếp hiệu quả của cơ chế chủ động (Predictive) so với cơ chế phản ứng (Reactive) thông qua các kịch bản mô phỏng tải tăng dần tuyến tính, tải tuần hoàn và tải thực tế World Cup.
+
+## 🔄 4. Chi tiết quy trình thực hiện
+
+**Khởi tạo cụm K8s với Kind**
+kind delete cluster --name online-boutique 
