@@ -29,4 +29,52 @@ Hệ thống được thiết kế theo một quy trình khép kín, tự độn
 ## 🔄 4. Chi tiết quy trình thực hiện
 
 **Khởi tạo cụm K8s với Kind**
-kind delete cluster --name online-boutique 
+```bash
+kind delete cluster --name online-boutique
+```
+**Triển khai ứng dụng Online Boutique**
+
+Triển khai hệ thống microservices mẫu để làm môi trường thực nghiệm.
+```bash
+# Clone mã nguồn dự án
+git clone [https://github.com/GoogleCloudPlatform/microservices-demo.git](https://github.com/GoogleCloudPlatform/microservices-demo.git) online_boutique
+cd online_boutique
+
+# Deploy ứng dụng lên cluster
+kubectl apply -f release/kubernetes-manifests.yaml
+
+# Tắt tạo tải ngầm mặc định để chuẩn bị cho kịch bản Load Test riêng
+kubectl scale deployment loadgenerator --replicas=0
+```
+**Thiết lập hệ thống giám sát**
+Cài đặt Prometheus và Grafana
+```bash
+# Tạo namespace cho monitoring
+kubectl create namespace monitoring
+
+# Cài đặt Prometheus
+helm repo add prometheus-community [https://prometheus-community.github.io/helm-charts](https://prometheus-community.github.io/helm-charts)
+helm repo update
+helm install prometheus prometheus-community/prometheus --namespace monitoring
+
+# Cài đặt Grafana
+helm repo add grafana [https://grafana.github.io/helm-charts](https://grafana.github.io/helm-charts)
+helm install grafana grafana/grafana --namespace monitoring
+
+# Lấy mật khẩu đăng nhập Grafana (Giải mã chuỗi Base64)
+kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
+> *Ghi chú:* Kết nối Prometheus Data Source trong Grafana tại địa chỉ nội bộ:
+> `http://prometheus-server.monitoring.svc.cluster.local`
+
+**Cài đặt Istio và Kiali**
+
+Truy cập 
+```bash
+https://github.com/istio/istio/releases
+```
+Chọn phiên bản phù hợp (ví dụ: istio-1.29.4-win-amd64.zip)
+Giải nén và lưu vào thư mục LVTN/k8s/istio_service
+Vào LVTN/k8s/istio_service/bin 
+Kiểm tra xem đã có istioctl chưa
+
